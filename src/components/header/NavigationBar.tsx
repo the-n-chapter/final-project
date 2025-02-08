@@ -7,7 +7,7 @@ export function NavigationBar() {
       <Link to="/" className="text-sm font-manrope hover:text-primary">
         Home
       </Link>
-      <Link to="/about" className="text-sm font-manrope text-muted-foreground hover:text-primary">
+      <Link to="/about" className="text-sm font-manrope hover:text-primary">
         About
       </Link>
     </nav>
