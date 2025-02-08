@@ -29,10 +29,12 @@ export function TablePagination({
   }: PaginationProps) {
     return (
       <div className="flex flex-col sm:flex-row items-center justify-between px-2 gap-4">
-        <div className="text-sm text-muted-foreground order-2 sm:order-1">{totalEntries} total entries</div>
-        <div className="flex flex-col sm:flex-row items-center gap-4 order-1 sm:order-2">
+        <div className="text-sm text-muted-foreground order-2 sm:order-1 flex-1">
+          {totalEntries} total entries
+        </div>
+        <div className="flex flex-col sm:flex-row items-center gap-2 order-1 sm:order-2">
           <div className="flex items-center gap-2">
-            <span className="text-sm">Rows per page</span>
+            <span className="text-sm whitespace-nowrap pr-1">Rows per page</span>
             <Select
               value={rowsPerPage.toString()}
               onValueChange={(value) => {
@@ -40,7 +42,7 @@ export function TablePagination({
                 onPageChange(1)
               }}
             >
-              <SelectTrigger className="w-[70px]">
+              <SelectTrigger className="w-[55px] flex-shrink-0">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
