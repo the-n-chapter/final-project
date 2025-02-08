@@ -50,7 +50,6 @@ export function YearFilter({ winners, selectedYears, onChange }: YearFilterProps
         <Input
           id="year-input"
           type="text"
-          placeholder="Type year(s) e.g., 1991"
           value={yearInput}
           onChange={(e) => setYearInput(e.target.value)}
           onKeyDown={(e) => {

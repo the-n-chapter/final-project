@@ -52,7 +52,6 @@ export function FieldFilter({ winners, selectedFields, onChange }: FieldFilterPr
         <Input
           id="field-input"
           type="text"
-          placeholder="Type field(s) e.g., Chemistry"
           value={fieldInput}
           onChange={(e) => setFieldInput(e.target.value)}
           onKeyDown={(e) => {
