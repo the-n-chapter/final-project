@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import '@fontsource/manrope/400.css';
 
 interface NavItemProps {
   href: string
@@ -7,7 +8,7 @@ interface NavItemProps {
 
 function NavItem({ href, label }: NavItemProps) {
   return (
-    <Link to={href} className="text-sm font-medium transition-colors hover:text-primary">
+    <Link to={href} className="text-sm font-manrope transition-colors hover:text-primary">
       {label}
     </Link>
   )
