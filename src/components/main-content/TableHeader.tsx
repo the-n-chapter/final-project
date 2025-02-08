@@ -11,7 +11,7 @@ export function TableHeader({ toggleSort }: TableHeaderProps) {
     <UITableHeader>
       <TableRow>
         {/* Year Column: Shifted Right & Arrow Closer */}
-        <TableHead className="w-[100px] min-w-[100px] pl-6"> {/* Added left padding */}
+        <TableHead className="w-[100px] min-w-[100px] pl-5"> {/* Added left padding */}
           <div className="flex items-center gap-0.2"> {/* Reduced space between text & arrow */}
             Year
             <Button variant="ghost" onClick={toggleSort} className="h-8 w-8 p-0">

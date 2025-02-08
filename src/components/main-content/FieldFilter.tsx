@@ -46,7 +46,7 @@ export function FieldFilter({ winners, selectedFields, onChange }: FieldFilterPr
   return (
     <div className="w-full sm:w-[calc(50%-0.5rem)]">
       <label htmlFor="field-input" className="block text-sm font-medium">
-        Fields
+       ⌕ Fields
       </label>
       <div className="relative">
         <Input
