@@ -44,7 +44,7 @@ export function YearFilter({ winners, selectedYears, onChange }: YearFilterProps
   return (
     <div className="w-full sm:w-[calc(50%-0.5rem)]">
       <label htmlFor="year-input" className="block text-sm font-medium">
-       ⌕ Years
+       🔎 Years
       </label>
       <div className="relative">
         <Input
