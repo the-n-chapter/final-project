@@ -10,10 +10,10 @@ export function TableBody({ winners }: TableBodyProps) {
     <UITableBody>
       {winners.map((winner, index) => (
         <TableRow key={index}>
-          <TableCell className="font-medium">{winner.year}</TableCell>
-          <TableCell>{winner.field}</TableCell>
-          <TableCell>{winner.work}</TableCell>
-          <TableCell>{winner.author}</TableCell>
+          <TableCell className="pl-6">{winner.year}</TableCell>
+          <TableCell className="pr-4">{winner.field}</TableCell>
+          <TableCell className="w-[45%] pr-4">{winner.work}</TableCell>
+          <TableCell className="w-[35%]">{winner.author}</TableCell>
         </TableRow>
       ))}
     </UITableBody>

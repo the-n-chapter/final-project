@@ -1,50 +1,50 @@
-"use client"
+"use client";
 
-import { useState, useMemo } from "react"
-import type { IgNobelWinner } from "../../data/winners-data"
-import { TableHeader } from "./TableHeader"
-import { TableBody } from "./TableBody"
-import { TablePagination } from "./Pagination"
-import { Table, TableCaption } from "@/components/ui/table"
+import { useState, useMemo } from "react";
+import type { IgNobelWinner } from "../../data/winners-data";
+import { TableHeader } from "./TableHeader";
+import { TableBody } from "./TableBody";
+import { TablePagination } from "./Pagination";
+import { Table, TableCaption } from "@/components/ui/table";
 
-type SortDirection = "asc" | "desc" | null
+type SortDirection = "asc" | "desc" | null;
 
 interface WinnersTableProps {
-  winners: IgNobelWinner[]
+  winners: IgNobelWinner[];
 }
 
 export default function WinnersTable({ winners }: WinnersTableProps) {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [rowsPerPage, setRowsPerPage] = useState(10)
-  const [sortDirection, setSortDirection] = useState<SortDirection>("desc")
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
 
-  const filteredWinners = useMemo(() => {
-    const filtered = winners
-
+  // Sort the winners based on year.
+  const sortedWinners = useMemo(() => {
+    const sorted = [...winners]; // create a shallow copy to avoid mutating props
     if (sortDirection) {
-      filtered.sort((a, b) => {
-        const modifier = sortDirection === "asc" ? 1 : -1
-        return (a.year - b.year) * modifier
-      })
+      sorted.sort((a, b) => {
+        const modifier = sortDirection === "asc" ? 1 : -1;
+        return (a.year - b.year) * modifier;
+      });
     }
+    return sorted;
+  }, [winners, sortDirection]);
 
-    return filtered
-  }, [winners, sortDirection])
-
+  // Paginate the sorted winners.
   const paginatedWinners = useMemo(() => {
-    const startIndex = (currentPage - 1) * rowsPerPage
-    return filteredWinners.slice(startIndex, startIndex + rowsPerPage)
-  }, [filteredWinners, currentPage, rowsPerPage])
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    return sortedWinners.slice(startIndex, startIndex + rowsPerPage);
+  }, [sortedWinners, currentPage, rowsPerPage]);
 
-  const totalPages = Math.ceil(filteredWinners.length / rowsPerPage)
+  const totalPages = Math.ceil(sortedWinners.length / rowsPerPage);
 
   const toggleSort = () => {
     setSortDirection((current) => {
-      if (current === null) return "asc"
-      if (current === "asc") return "desc"
-      return null
-    })
-  }
+      if (current === null) return "asc";
+      if (current === "asc") return "desc";
+      return null;
+    });
+  };
 
   return (
     <div className="space-y-4">
@@ -62,11 +62,10 @@ export default function WinnersTable({ winners }: WinnersTableProps) {
         currentPage={currentPage}
         totalPages={totalPages}
         rowsPerPage={rowsPerPage}
-        totalEntries={filteredWinners.length}
+        totalEntries={sortedWinners.length}
         onPageChange={setCurrentPage}
         onRowsPerPageChange={setRowsPerPage}
       />
     </div>
-  )
+  );
 }
-

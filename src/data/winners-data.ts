@@ -14,7 +14,7 @@ const useWinners = () => {
   const [winners, setWinners] = useState<IgNobelWinner[]>([]);
 
   useEffect(() => {
-    const filePath = '/data.xlsx';  // Ensure this file exists in the 'public' directory
+    const filePath = '/data.xlsx';  // This file in 'public' directory
     excelRead(filePath).then((excelData) => {
       setWinners(excelData as IgNobelWinner[]);
     });
