@@ -93,7 +93,7 @@ export function About() {
                     “The Ig Nobel awards are arguably the highlight of the scientific calendar... They are
                     a welcome antidote to the everyday seriousness and stuffiness of life in the lab. 
                     Some people may raise their eyebrows at such seemingly pointless science. But I would argue 
-                    that we need research like this to lighten our lives” — Nature.
+                    that we need research like this to lighten our lives.” — Nature.
                 </motion.p>
                 <motion.p 
                     className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify pr-12 py-2"
@@ -103,8 +103,8 @@ export function About() {
                     viewport={{ once: true }}
                 >
                     Since its beginning, the Ig Nobel Prize has celebrated more than 300 quirky research 
-                    achievements. Every year, about 10 prizes are handed out in different fields. For example, 
-                    a study that explored a possible link between country music and suicide rates won the 2004 
+                    achievements. Every year, about 10 prizes are handed out in different fields such as Physics, Medicine, Literature, and Peace. 
+                    For example, a study that explored a possible link between country music and suicide rates won the 2004 
                     Medicine Prize. Meanwhile, the 2012 Neuroscience Prize went to researchers who used MRI scans 
                     to explore the brain activity of dead salmon. Interesting, isn't it?
                 </motion.p>

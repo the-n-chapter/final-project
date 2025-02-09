@@ -51,7 +51,7 @@ export default function WinnersTable({ winners }: WinnersTableProps) {
       <div className="rounded-md border overflow-x-auto">
         <Table>
           <TableCaption>
-            A list of Ig Nobel Prize winners
+            <span className="text-slate-400">A list of Ig Nobel Prize winners</span>
             <div className="h-4"></div>
           </TableCaption>
           <TableHeader toggleSort={toggleSort} />
