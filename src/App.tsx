@@ -1,3 +1,5 @@
+// App.tsx
+
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider"
 import { Header } from "@/components/header/Header"

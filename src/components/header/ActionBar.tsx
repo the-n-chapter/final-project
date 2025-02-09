@@ -1,3 +1,5 @@
+// ActionBar.tsx
+
 import { ThemeToggle } from "./ThemeToggle"
 
 export function ActionBar() {
