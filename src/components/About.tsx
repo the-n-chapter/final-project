@@ -56,8 +56,8 @@ export function About() {
                     viewport={{ once: true }}
                 >
                     I hope this website becomes a place where you can find inspiration for your research or simply enjoy 
-                    reading it while, for example, commuting. Most importantly, I hope it encourages people to see science differently—by making them 
-                    "first laugh, then think."
+                    reading it while, for example, commuting. Most importantly, I hope it encourages people to see science differently,
+                    by making them "first laugh, then think."
                 </motion.p>
             </div>
         </section>

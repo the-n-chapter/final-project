@@ -11,7 +11,7 @@ export function Title() {
         <h1 className="text-6xl md:text-8xl font-bold font-noto-serif">
           Ig Nobelpedia.
         </h1>
-        <span className="text-sm text-gray-500 md:-mb-1">
+        <span className="text-sm text-slate-400 md:-mb-1">
           /ɪɡ noʊˌbɛlˈpiːdiə/
         </span>
       </div>
