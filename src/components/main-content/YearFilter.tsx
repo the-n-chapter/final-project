@@ -111,6 +111,8 @@ export function YearFilter({ winners, selectedYears, onChange }: YearFilterProps
             <button
               type="button"
               onClick={() => {
+                // When click on this button, the selected year is removed from selectedYears
+                // and back to the dropdown menu
                 // Create a new array without the current year
                 const updatedYears = selectedYears.filter((currentYear) => {
                   return currentYear !== year;
@@ -128,3 +130,9 @@ export function YearFilter({ winners, selectedYears, onChange }: YearFilterProps
     </div>
   );
 }
+
+// Return
+// (1) Label "Year"
+// (2) Input box
+// (3) Dropdown list when users type something valid
+// (4) Selected years

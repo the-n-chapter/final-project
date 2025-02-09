@@ -9,23 +9,30 @@ import { YearFilter } from "./YearFilter";
 import { FieldFilter } from "./FieldFilter";
 
 export function Filter() {
-  // Load all winners from your data source.
   const winners = useWinners();
 
-  // Filter states.
+  // Filter states, which year/ field is being selected
   const [selectedYears, setSelectedYears] = useState<number[]>([]);
   const [selectedFields, setSelectedFields] = useState<string[]>([]);
 
-  // Compute filtered winners based on the selected years and fields.
+  // Compute filtered winners based on selected years and fields
+  // useMemo(): recalculate only when winners, selectedYears, selectedFields change
   const filteredWinners = useMemo(() => {
     return winners.filter((winner: IgNobelWinner) => {
-      const matchesYear =
-        selectedYears.length === 0 || selectedYears.includes(winner.year);
-      const matchesField =
-        selectedFields.length === 0 || selectedFields.includes(winner.field);
-      return matchesYear && matchesField;
+      // Check if a year filter is applied
+      const isYearSelected = selectedYears.length > 0;
+      const isYearMatch = isYearSelected ? selectedYears.includes(winner.year) : true;
+
+      // if no year/field is selected, isYearMatch/isFieldMatch = true
+  
+      // Check if a field filter is applied
+      const isFieldSelected = selectedFields.length > 0;
+      const isFieldMatch = isFieldSelected ? selectedFields.includes(winner.field) : true;
+  
+      // Include the winner only if it matches both filters
+      return isYearMatch && isFieldMatch;
     });
-  }, [winners, selectedYears, selectedFields]);
+  }, [winners, selectedYears, selectedFields]);  
 
   return (
     <div>
