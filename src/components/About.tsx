@@ -21,7 +21,7 @@ export function About() {
             {/* Text Container */}
             <div className="md:w-2/3 px-2 md:px-4 py-4 flex flex-col justify-center space-y-4">
                 <motion.p 
-                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify pr-12 pl-4 py-2"
+                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify md:pr-12 md:pl-4 py-2"
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
@@ -35,7 +35,7 @@ export function About() {
                 </motion.p>
 
                 <motion.p 
-                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify pr-4 pl-12 py-2"
+                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify md:pr-4 md:pl-12 py-2"
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 1 }}
@@ -49,7 +49,7 @@ export function About() {
                 </motion.p>
 
                 <motion.p 
-                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify pr-12 pl-4 py-2"
+                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify md:pr-12 md:pl-4 py-2"
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 2 }}
@@ -65,13 +65,13 @@ export function About() {
         {/* Section 2: Image Right + 2 Paragraphs Left */}
         <h2 className="text-4xl md:text-5xl font-bold text-left font-noto-serif mt-6 mb-6">
             <span className="text-slate-300">// about the </span>
-            <span className="text-sky-400">Ig Nobel Prize.</span>
+            <span className="text-sky-400">Prize.</span>
         </h2>
         <section className="flex flex-col md:flex-row gap-8 items-stretch justify-center px-4 md:px-8 lg:px-12 mb-2">
             {/* Text Container */}
             <div className="md:w-2/3 px-2 md:px-4 py-4 flex flex-col justify-center space-y-4">
                 <motion.p 
-                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify pr-12 py-2"
+                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify md:pr-12 py-2"
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 2 }}
@@ -84,7 +84,7 @@ export function About() {
                     curious audience in a light-hearted event.
                 </motion.p>
                 <motion.p 
-                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide pl-12 py-2"
+                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide md:pl-12 py-2"
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 3 }}
@@ -96,7 +96,7 @@ export function About() {
                     that we need research like this to lighten our lives.” — Nature.
                 </motion.p>
                 <motion.p 
-                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify pr-12 py-2"
+                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify md:pr-12 py-2"
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 4 }}

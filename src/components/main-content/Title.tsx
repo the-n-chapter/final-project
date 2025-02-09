@@ -6,12 +6,15 @@ import { ReactTyped } from "react-typed";
 export function Title() {
   return (
     <div>
-      {/* Container for title + IPA */}
+      {/* Container for title + IPA 
+      By default, vertically stacked (columns) a|b
+      Larger screens, changed to horizontally a/b + aligned based on text's line
+      */}
       <div className="flex flex-col md:flex-row md:items-baseline gap-3 md:gap-5 mb-4 md:mb-8">
-        <h1 className="text-6xl md:text-8xl font-bold font-noto-serif">
+        <h1 className="text-6xl md:text-8xl font-bold font-noto-serif mt-6">
           Ig Nobelpedia.
         </h1>
-        <span className="text-sm text-slate-400 md:-mb-1">
+        <span className="text-sm text-slate-400">
           /ɪɡ noʊˌbɛlˈpiːdiə/
         </span>
       </div>

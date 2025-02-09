@@ -17,14 +17,16 @@ interface WinnersTableProps {
 
 export default function WinnersTable({ winners }: WinnersTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
+  const [rowsPerPage, setRowsPerPage] = useState(10); // initial state = 10
+  const [sortDirection, setSortDirection] = useState<SortDirection>("desc"); // most recent years first
 
-  // Sort the winners based on year.
+  // Sort winners based on year
   const sortedWinners = useMemo(() => {
     const sorted = [...winners]; // create a shallow copy to avoid mutating props
     if (sortDirection) {
       sorted.sort((a, b) => {
+        // 1 = smallest -> largest
+        // -1 = largest -> smallest
         const modifier = sortDirection === "asc" ? 1 : -1;
         return (a.year - b.year) * modifier;
       });
@@ -32,7 +34,7 @@ export default function WinnersTable({ winners }: WinnersTableProps) {
     return sorted;
   }, [winners, sortDirection]);
 
-  // Paginate the sorted winners.
+  // Paginate sorted winners
   const paginatedWinners = useMemo(() => {
     const startIndex = (currentPage - 1) * rowsPerPage;
     return sortedWinners.slice(startIndex, startIndex + rowsPerPage);
