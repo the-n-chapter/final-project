@@ -13,9 +13,9 @@ export function About() {
             <div className="md:w-1/4 lg:w-1/3 px-2 flex items-center">
                 <img 
                     loading="lazy"
-                    src="/bronze-statue.webp"
-                    alt="Ig Nobel Prize Statue"
-                    className="rounded-lg shadow-xl w-full h-auto max-h-[500px] mx-auto"
+                    src="/inspiration.png"
+                    alt="Image 1"
+                    className="rounded-full md:w-80 md:h-80 mx-auto object-cover"
                 />
             </div>
 
@@ -103,8 +103,7 @@ export function About() {
                     transition={{ duration: 0.8, ease: "easeOut", delay: 4 }}
                     viewport={{ once: true }}
                 >
-                    Since its beginning, the Ig Nobel Prize has celebrated more than 300 quirky research 
-                    achievements. Every year, about 10 prizes are handed out in different fields such as Physics, Medicine, Literature, and Peace. 
+                    Every year, about 10 prizes are handed out in different fields such as Physics, Medicine, Literature, and Peace. 
                     For example, a study that explored a possible link between country music and suicide rates won the 2004 
                     Medicine Prize. Meanwhile, the 2012 Neuroscience Prize went to researchers who used MRI scans 
                     to explore the brain activity of dead salmon. Interesting, isn't it?
@@ -115,9 +114,9 @@ export function About() {
             <div className="md:w-1/3 px-2 flex items-center">
                 <img 
                     loading="lazy"
-                    src="/ignobel-prize.webp"
-                    alt="Ig Nobel Prize Image, year 2012"
-                    className="rounded-lg shadow-xl w-full h-auto max-h-[500px] mx-auto"
+                    src="/reminder.png"
+                    alt="Image 2"
+                    className="rounded-full md:w-80 md:h-80 mx-auto object-cover"
                 />
             </div>
         </section>
