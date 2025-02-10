@@ -1,17 +1,16 @@
 // MultiSelectFilter.tsx
-"use client";
-
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 interface MultiSelectFilterProps<T> {
   label: string;
   items: T[];
   selected: T[];
   onChange: (items: T[]) => void;
-  // Optionally transform the item to string
   toString?: (item: T) => string;
+  placeholder?: string;
 }
 
 export function MultiSelectFilter<T>({
@@ -20,59 +19,74 @@ export function MultiSelectFilter<T>({
   selected,
   onChange,
   toString = (item: T) => String(item),
+  placeholder
 }: MultiSelectFilterProps<T>) {
   const [input, setInput] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
-  // Calculate options that are not selected and match input
   const dropdownOptions = useMemo(() => {
+    if (!input.trim()) return [];
+    
+    const searchTerm = input.toLowerCase();
     return items.filter(item => {
-      const str = toString(item);
-      return str.includes(input) && !selected.includes(item);
-    });
+      const str = toString(item).toLowerCase();
+      return str.includes(searchTerm) && !selected.includes(item);
+    }).slice(0, 10); // Limit display to 10 items for performance
   }, [items, input, selected, toString]);
 
-  // Parse input into potential new selections (splitting on space/comma)
-  const addFromInput = () => {
-    const newSelections = input
-      .split(/[\s,]+/)
-      .map(s => s.trim())
-      .filter(s => s && items.map(toString).includes(s))
-      .map(s => {
-        // Convert string back to T if T is number; otherwise assume string
-        return (typeof items[0] === "number" ? Number(s) : s) as T;
-      });
-    if (newSelections.length > 0) {
-      onChange([...selected, ...newSelections]);
-      setInput("");
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+    setIsOpen(true);
+  }, []);
+
+  const handleSelect = useCallback((item: T) => {
+    onChange([...selected, item]);
+    setInput("");
+    setIsOpen(false);
+  }, [selected, onChange]);
+
+  const handleRemove = useCallback((itemToRemove: T) => {
+    onChange(selected.filter(item => item !== itemToRemove));
+  }, [selected, onChange]);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Escape') {
+      setIsOpen(false);
+      return;
     }
-  };
+    
+    if (e.key === 'Enter' && dropdownOptions.length > 0) {
+      e.preventDefault();
+      handleSelect(dropdownOptions[0]);
+    }
+  }, [dropdownOptions, handleSelect]);
 
   return (
     <div className="w-full sm:w-[calc(50%-0.5rem)]">
-      <label className="block text-sm font-medium">{label}</label>
+      <label className="block text-sm font-medium mb-1">{label}</label>
       <div className="relative">
         <Input
           type="text"
           value={input}
-          onChange={e => setInput(e.target.value)}
-          onKeyDown={e => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              addFromInput();
-            }
-          }}
-          className="mt-1"
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          onFocus={() => setIsOpen(true)}
+          placeholder={placeholder}
+          className="w-full"
+          aria-label={label}
         />
-        {input && dropdownOptions.length > 0 && (
-          <div className="absolute z-10 w-full mt-1 bg-background border rounded-md shadow-lg max-h-60 overflow-auto">
+        
+        {isOpen && dropdownOptions.length > 0 && (
+          <div 
+            className="absolute z-10 w-full mt-1 bg-background border rounded-md shadow-lg max-h-60 overflow-auto"
+            role="listbox"
+          >
             {dropdownOptions.map((item, idx) => (
               <div
-                key={idx}
+                key={`${toString(item)}-${idx}`}
                 className="px-4 py-2 hover:bg-muted cursor-pointer"
-                onClick={() => {
-                  onChange([...selected, item]);
-                  setInput("");
-                }}
+                onClick={() => handleSelect(item)}
+                role="option"
               >
                 {toString(item)}
               </div>
@@ -80,25 +94,28 @@ export function MultiSelectFilter<T>({
           </div>
         )}
       </div>
-      <div className="flex flex-wrap gap-2 mt-2">
-        {selected.map((item, idx) => (
-          <div
-            key={idx}
-            className="flex items-center bg-primary/10 text-primary text-sm font-medium px-2.5 py-0.5 rounded"
-          >
-            {toString(item)}
-            <button
-              type="button"
-              onClick={() =>
-                onChange(selected.filter(s => s !== item))
-              }
-              className="ml-1 h-4 w-4 p-0"
+      
+      {selected.length > 0 && (
+        <div className="flex flex-wrap gap-2 mt-2">
+          {selected.map((item, idx) => (
+            <Badge
+              key={`${toString(item)}-${idx}`}
+              variant="secondary"
+              className="flex items-center gap-1"
             >
-              <X className="h-3 w-3" />
-            </button>
-          </div>
-        ))}
-      </div>
+              {toString(item)}
+              <button
+                type="button"
+                onClick={() => handleRemove(item)}
+                className="ml-1 h-4 w-4 p-0 hover:text-destructive"
+                aria-label={`Remove ${toString(item)}`}
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </Badge>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

@@ -1,14 +1,18 @@
+// MainContent.tsx
+import dynamic from 'next/dynamic';
 import { Title } from "./Title";
-import { Filter } from "./Filter";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const MainContent = () => {
+const Filter = dynamic(() => import('./Filter'), {
+  loading: () => <Skeleton className="h-screen w-full" />,
+  ssr: false,
+});
+
+export default function MainContent() {
   return (
-    <div className="container mx-auto py-8">
+    <main className="container mx-auto py-8 px-4">
       <Title />
-      {/* Filter will control state of WinnersTable, filtered or unfiltered (original data) */}
       <Filter />
-    </div>
+    </main>
   );
 }
-
-export default MainContent;
