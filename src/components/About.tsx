@@ -22,7 +22,7 @@ export function About() {
             {/* Text Container */}
             <div className="md:w-2/3 px-2 md:px-4 py-4 flex flex-col justify-center space-y-4">
                 <motion.p 
-                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify md:pr-12 md:pl-4 py-2"
+                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify md:pr-12 py-2"
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
@@ -36,7 +36,7 @@ export function About() {
                 </motion.p>
 
                 <motion.p 
-                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify md:pr-4 md:pl-12 py-2"
+                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify md:pl-12 py-2"
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 1 }}
@@ -50,7 +50,7 @@ export function About() {
                 </motion.p>
 
                 <motion.p 
-                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify md:pr-12 md:pl-4 py-2"
+                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify md:pr-12 py-2"
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 2 }}
