@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export function About() {
     return (
-      <div className="container py-8 mb-16">
+      <div className="container py-8 mb-4">
         {/* Section 1: Image Left + 3 Paragraphs Right */}
         <h2 className="text-4xl md:text-5xl font-bold text-left font-noto-serif mt-6 mb-6">
             <span className="text-slate-300">// about the </span><span className="text-sky-400">Project.</span>
@@ -121,6 +121,35 @@ export function About() {
             </div>
         </section>
 
+        {/* Section 3: Credits */}
+        <div className="overflow-hidden w-full mt-20 text-sm text-black font-manrope">
+            <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: "-100%" }}
+                transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+                className="whitespace-nowrap flex space-x-4"
+            >
+                <p>
+                Original database―
+                <a
+                    href="https://improbable.com/ig/winners/"
+                    className="text-slate-500 hover:text-sky-400 cursor-pointer no-underline"
+                >
+                    Improbable Research
+                </a>
+                </p>
+                <span className='ml-8 mr-8'> | </span>
+                <p>
+                Illustrations―
+                <a
+                    href="https://notioly.com/"
+                    className="text-slate-500 hover:text-sky-400 cursor-pointer no-underline"
+                >
+                    Mary Amato@Notioly
+                </a>
+                </p>
+            </motion.div>
+        </div>
       </div>
     );
 }
