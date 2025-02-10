@@ -1,5 +1,4 @@
 // WinnersTable.tsx
-
 "use client";
 
 import { useState, useMemo } from "react";
@@ -9,7 +8,7 @@ import { TableBody } from "./TableBody";
 import { TablePagination } from "./Pagination";
 import { Table, TableCaption } from "@/components/ui/table";
 
-type SortDirection = "asc" | "desc" | null;
+type SortDirection = "asc" | "desc";
 
 interface WinnersTableProps {
   winners: IgNobelWinner[];
@@ -17,37 +16,24 @@ interface WinnersTableProps {
 
 export default function WinnersTable({ winners }: WinnersTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10); // initial state = 10
-  const [sortDirection, setSortDirection] = useState<SortDirection>("desc"); // most recent years first
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
 
-  // Sort winners based on year
   const sortedWinners = useMemo(() => {
-    const sorted = [...winners]; // create a shallow copy to avoid mutating props
-    if (sortDirection) {
-      sorted.sort((a, b) => {
-        // 1 = smallest -> largest
-        // -1 = largest -> smallest
-        const modifier = sortDirection === "asc" ? 1 : -1;
-        return (a.year - b.year) * modifier;
-      });
-    }
+    const sorted = [...winners];
+    sorted.sort((a, b) => (a.year - b.year) * (sortDirection === "asc" ? 1 : -1));
     return sorted;
   }, [winners, sortDirection]);
 
-  // Paginate sorted winners
   const paginatedWinners = useMemo(() => {
-    const startIndex = (currentPage - 1) * rowsPerPage;
-    return sortedWinners.slice(startIndex, startIndex + rowsPerPage);
+    const start = (currentPage - 1) * rowsPerPage;
+    return sortedWinners.slice(start, start + rowsPerPage);
   }, [sortedWinners, currentPage, rowsPerPage]);
 
   const totalPages = Math.ceil(sortedWinners.length / rowsPerPage);
 
   const toggleSort = () => {
-    setSortDirection((current) => {
-      if (current === null) return "asc";
-      if (current === "asc") return "desc";
-      return null;
-    });
+    setSortDirection(prev => (prev === "asc" ? "desc" : "asc"));
   };
 
   return (

@@ -1,57 +1,56 @@
 // Filter.tsx
-
 "use client";
 
 import { useState, useMemo } from "react";
-import useWinners, { IgNobelWinner } from "../../data/winners-data";
+import useWinners from "../../data/winners-data";
 import WinnersTable from "./WinnersTable";
-import { YearFilter } from "./YearFilter";
-import { FieldFilter } from "./FieldFilter";
+import { MultiSelectFilter } from "./MultiSelectFilter";
 
 export function Filter() {
   const winners = useWinners();
 
-  // Filter states, which year/ field is being selected
+  // Extract unique years and fields
+  const availableYears = useMemo(() => {
+    return Array.from(new Set(winners.map(w => w.year))).sort((a, b) => a - b);
+  }, [winners]);
+
+  const availableFields = useMemo(() => {
+    return Array.from(new Set(winners.map(w => w.field))).sort();
+  }, [winners]);
+
   const [selectedYears, setSelectedYears] = useState<number[]>([]);
   const [selectedFields, setSelectedFields] = useState<string[]>([]);
 
-  // Compute filtered winners based on selected years and fields
-  // useMemo(): recalculate only when winners, selectedYears, selectedFields change
+  // Filter winners based on selected years and fields
   const filteredWinners = useMemo(() => {
-    return winners.filter((winner: IgNobelWinner) => {
-      // Check if a year filter is applied
-      const isYearSelected = selectedYears.length > 0;
-      const isYearMatch = isYearSelected ? selectedYears.includes(winner.year) : true;
-
-      // if no year/field is selected, isYearMatch/isFieldMatch = true
-  
-      // Check if a field filter is applied
-      const isFieldSelected = selectedFields.length > 0;
-      const isFieldMatch = isFieldSelected ? selectedFields.includes(winner.field) : true;
-  
-      // Include the winner only if it matches both filters
-      return isYearMatch && isFieldMatch;
+    return winners.filter(winner => {
+      const yearMatch = selectedYears.length ? selectedYears.includes(winner.year) : true;
+      const fieldMatch = selectedFields.length ? selectedFields.includes(winner.field) : true;
+      return yearMatch && fieldMatch;
     });
-  }, [winners, selectedYears, selectedFields]);  
+  }, [winners, selectedYears, selectedFields]);
 
   return (
     <div>
-      {/* Filter controls */}
       <div className="flex flex-wrap gap-4 p-4 rounded-lg border mb-4">
-        <YearFilter
-          winners={winners}
-          selectedYears={selectedYears}
+        <MultiSelectFilter
+          label="⌕ Years"
+          items={availableYears}
+          selected={selectedYears}
           onChange={setSelectedYears}
+          toString={item => String(item)}
         />
-        <FieldFilter
-          winners={winners}
-          selectedFields={selectedFields}
+        <MultiSelectFilter
+          label="⌕ Fields"
+          items={availableFields}
+          selected={selectedFields}
           onChange={setSelectedFields}
+          toString={item => item}
         />
       </div>
-
-      {/* Display the table with filtered data */}
       <WinnersTable winners={filteredWinners} />
     </div>
   );
 }
+
+export default Filter;

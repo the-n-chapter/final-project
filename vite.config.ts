@@ -5,7 +5,7 @@ import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/final-project",
+  // base: "/final-project",
   plugins: [react(), visualizer({ open: true })],
   resolve: {
     alias: {
