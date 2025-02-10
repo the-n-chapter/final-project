@@ -50,9 +50,11 @@
     "globals": "^15.14.0",
     "postcss": "^8",
     "rollup-plugin-visualizer": "^5.14.0",
+    "svgo": "^3.3.2",
     "tailwindcss": "^3.4.1",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
-    "vite": "^6.0.5"
+    "vite": "^6.0.5",
+    "vite-plugin-image-optimizer": "^1.1.8"
   }
 }
