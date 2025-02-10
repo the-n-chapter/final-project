@@ -7,7 +7,7 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/final-project",
+  // base: "/final-project",
   plugins: [
     react(), 
     visualizer({ open: true }),
