@@ -1,7 +1,7 @@
 import '@fontsource/manrope/400.css';
 import { motion } from "framer-motion";
 
-const About = () => {
+export function About() {
     return (
       <div className="container py-8 mb-16">
         {/* Section 1: Image Left + 3 Paragraphs Right */}
@@ -125,5 +125,3 @@ const About = () => {
       </div>
     );
 }
-
-export default About;
