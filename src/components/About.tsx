@@ -28,7 +28,7 @@ const About = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ once: true }}
                 >
-                    During my studies at Kanazawa University, I came across the research of Professor Yukio Hirose, 
+                    During my studies at A University, I came across the research of Professor Yukio Hirose, 
                     who won an Ig Nobel Prize for figuring out why pigeons avoided a particular bronze statue in the city. 
                     This fascinating discovery sparked my curiosity about the Ig Nobel Prize, and as I read more about it, 
                     I was amazed at how much I laughed at the winners' findings. It made me realize that science isn’t always 
