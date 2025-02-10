@@ -1,7 +1,7 @@
 import '@fontsource/manrope/400.css';
 import { motion } from "framer-motion";
 
-export function About() {
+const About = () => {
     return (
       <div className="container py-8 mb-16">
         {/* Section 1: Image Left + 3 Paragraphs Right */}
@@ -12,7 +12,8 @@ export function About() {
             {/* Image Container */}
             <div className="md:w-1/4 lg:w-1/3 px-2 flex items-center">
                 <img 
-                    src="/bronze-statue.jpg"
+                    loading="lazy"
+                    src="/bronze-statue.webp"
                     alt="Ig Nobel Prize Statue"
                     className="rounded-lg shadow-xl w-full h-auto max-h-[500px] mx-auto"
                 />
@@ -113,7 +114,8 @@ export function About() {
             {/* Image Container */}
             <div className="md:w-1/3 px-2 flex items-center">
                 <img 
-                    src="/ignobel-prize.jpg" // Replace with the appropriate image file path
+                    loading="lazy"
+                    src="/ignobel-prize.webp"
                     alt="Ig Nobel Prize Image, year 2012"
                     className="rounded-lg shadow-xl w-full h-auto max-h-[500px] mx-auto"
                 />
@@ -122,4 +124,6 @@ export function About() {
 
       </div>
     );
-  }
+}
+
+export default About;

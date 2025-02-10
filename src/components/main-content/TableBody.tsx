@@ -1,15 +1,18 @@
-import { TableBody as UITableBody, TableCell, TableRow } from "@/components/ui/table"
+// TableBody.tsx
+
 import type { IgNobelWinner } from "../../data/winners-data"
+import { memo } from 'react';
+import { TableBody as UITableBody, TableCell, TableRow } from "@/components/ui/table";
 
 interface TableBodyProps {
-  winners: IgNobelWinner[]
+  winners: IgNobelWinner[];
 }
 
-export function TableBody({ winners }: TableBodyProps) {
+export default memo(function TableBody({ winners }: TableBodyProps) {
   return (
     <UITableBody>
-      {winners.map((winner, index) => (
-        <TableRow key={index}>
+      {winners.map((winner) => (
+        <TableRow key={`${winner.year}-${winner.field}-${winner.author}`}>
           <TableCell className="pl-6">{winner.year}</TableCell>
           <TableCell className="pr-4">{winner.field}</TableCell>
           <TableCell className="w-[45%] pr-4">{winner.work}</TableCell>
@@ -17,6 +20,6 @@ export function TableBody({ winners }: TableBodyProps) {
         </TableRow>
       ))}
     </UITableBody>
-  )
-}
+  );
+});
 

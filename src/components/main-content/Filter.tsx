@@ -1,7 +1,7 @@
 // Filter.tsx
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, Suspense } from "react";
 import useWinners from "../../data/winners-data";
 import WinnersTable from "./WinnersTable";
 import { MultiSelectFilter } from "./MultiSelectFilter";
@@ -48,7 +48,9 @@ export function Filter() {
           toString={item => item}
         />
       </div>
-      <WinnersTable winners={filteredWinners} />
+      <Suspense fallback={<div className="text-slate-400">Loading data…</div>}>
+        <WinnersTable winners={filteredWinners} />
+      </Suspense>    
     </div>
   );
 }

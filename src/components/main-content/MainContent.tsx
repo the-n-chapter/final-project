@@ -1,7 +1,7 @@
 import { Title } from "./Title";
 import { Filter } from "./Filter";
 
-export function MainContent() {
+const MainContent = () => {
   return (
     <div className="container mx-auto py-8">
       <Title />
@@ -10,3 +10,5 @@ export function MainContent() {
     </div>
   );
 }
+
+export default MainContent;
