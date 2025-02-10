@@ -1,4 +1,5 @@
-import { memo } from 'react';
+// Pagination.tsx
+
 import {
   Pagination,
   PaginationContent,
@@ -7,19 +8,20 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+} from "@/components/ui/pagination"
+
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 interface PaginationProps {
-  currentPage: number;
-  totalPages: number;
-  rowsPerPage: number;
-  totalEntries: number;
-  onPageChange: (page: number) => void;
-  onRowsPerPageChange: (rows: number) => void;
+  currentPage: number
+  totalPages: number
+  rowsPerPage: number
+  totalEntries: number
+  onPageChange: (page: number) => void
+  onRowsPerPageChange: (rows: number) => void
 }
 
-export default memo(function TablePagination({
+export function TablePagination({
   currentPage,
   totalPages,
   rowsPerPage,
@@ -30,7 +32,7 @@ export default memo(function TablePagination({
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between px-2 gap-4">
       <div className="text-sm text-muted-foreground order-2 sm:order-1 flex-1">
-        {totalEntries.toLocaleString()} total entries
+        {totalEntries} total entries
       </div>
       <div className="flex flex-col sm:flex-row items-center gap-2 order-1 sm:order-2">
         <div className="flex items-center gap-2">
@@ -38,8 +40,8 @@ export default memo(function TablePagination({
           <Select
             value={rowsPerPage.toString()}
             onValueChange={(value) => {
-              onRowsPerPageChange(Number(value));
-              onPageChange(1);
+              onRowsPerPageChange(Number.parseInt(value))
+              onPageChange(1)
             }}
           >
             <SelectTrigger className="w-[55px] flex-shrink-0">
@@ -57,23 +59,10 @@ export default memo(function TablePagination({
         <Pagination>
           <PaginationContent>
             <PaginationItem>
-              <PaginationPrevious
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onPageChange(Math.max(1, currentPage - 1));
-                }}
-              />
+              <PaginationPrevious href="#" onClick={() => onPageChange(Math.max(1, currentPage - 1))} />
             </PaginationItem>
             <PaginationItem className="hidden sm:inline-block">
-              <PaginationLink
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onPageChange(1);
-                }}
-                isActive={currentPage === 1}
-              >
+              <PaginationLink href="#" onClick={() => onPageChange(1)} isActive={currentPage === 1}>
                 1
               </PaginationLink>
             </PaginationItem>
@@ -84,13 +73,7 @@ export default memo(function TablePagination({
             )}
             {currentPage > 2 && (
               <PaginationItem className="hidden sm:inline-block">
-                <PaginationLink
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onPageChange(currentPage - 1);
-                  }}
-                >
+                <PaginationLink href="#" onClick={() => onPageChange(currentPage - 1)}>
                   {currentPage - 1}
                 </PaginationLink>
               </PaginationItem>
@@ -104,13 +87,7 @@ export default memo(function TablePagination({
             )}
             {currentPage < totalPages - 1 && (
               <PaginationItem className="hidden sm:inline-block">
-                <PaginationLink
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onPageChange(currentPage + 1);
-                  }}
-                >
+                <PaginationLink href="#" onClick={() => onPageChange(currentPage + 1)}>
                   {currentPage + 1}
                 </PaginationLink>
               </PaginationItem>
@@ -122,30 +99,17 @@ export default memo(function TablePagination({
             )}
             {totalPages > 1 && (
               <PaginationItem className="hidden sm:inline-block">
-                <PaginationLink
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onPageChange(totalPages);
-                  }}
-                  isActive={currentPage === totalPages}
-                >
+                <PaginationLink href="#" onClick={() => onPageChange(totalPages)} isActive={currentPage === totalPages}>
                   {totalPages}
                 </PaginationLink>
               </PaginationItem>
             )}
             <PaginationItem>
-              <PaginationNext
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onPageChange(Math.min(totalPages, currentPage + 1));
-                }}
-              />
+              <PaginationNext href="#" onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))} />
             </PaginationItem>
           </PaginationContent>
         </Pagination>
       </div>
     </div>
-  );
-});
+  )
+}

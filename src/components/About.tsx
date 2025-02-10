@@ -28,7 +28,7 @@ const About = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ once: true }}
                 >
-                    During my studies at B University, I came across the research of Professor Yukio Hirose, 
+                    During my studies at Kanazawa University, I came across the research of Professor Yukio Hirose, 
                     who won an Ig Nobel Prize for figuring out why pigeons avoided a particular bronze statue in the city. 
                     This fascinating discovery sparked my curiosity about the Ig Nobel Prize, and as I read more about it, 
                     I was amazed at how much I laughed at the winners' findings. It made me realize that science isn’t always 
@@ -57,7 +57,7 @@ const About = () => {
                     viewport={{ once: true }}
                 >
                     I hope this website becomes a place where you can find inspiration for your research or simply enjoy 
-                    reading it while, for example, commuting. Most importantly, I hope it encourages people to see science differently,
+                    reading it while, for example, commuting. I hope it might also encourage people to see science differently,
                     by making them "first laugh, then think."
                 </motion.p>
             </div>
@@ -85,7 +85,7 @@ const About = () => {
                     curious audience in a light-hearted event.
                 </motion.p>
                 <motion.p 
-                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide md:pl-12 py-2"
+                    className="font-manrope text-muted-foreground text-sm leading-relaxed tracking-wide text-justify md:pl-12 py-2"
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 3 }}

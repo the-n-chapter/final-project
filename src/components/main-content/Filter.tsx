@@ -1,53 +1,56 @@
 // Filter.tsx
-import { useState, useMemo, Suspense } from "react";
-import dynamic from 'next/dynamic';
+"use client";
+
+import { useState, useMemo } from "react";
 import useWinners from "../../data/winners-data";
+import WinnersTable from "./WinnersTable";
 import { MultiSelectFilter } from "./MultiSelectFilter";
-import { useFilteredWinners } from "../../lib/filter-hook";
-import { Skeleton } from "@/components/ui/skeleton";
 
-const WinnersTable = dynamic(() => import('./WinnersTable'), {
-  loading: () => <Skeleton className="h-96 w-full" />,
-  ssr: false
-});
-
-export default function Filter() {
+export function Filter() {
   const winners = useWinners();
+
+  // Extract unique years and fields
+  const availableYears = useMemo(() => {
+    return Array.from(new Set(winners.map(w => w.year))).sort((a, b) => a - b);
+  }, [winners]);
+
+  const availableFields = useMemo(() => {
+    return Array.from(new Set(winners.map(w => w.field))).sort();
+  }, [winners]);
+
   const [selectedYears, setSelectedYears] = useState<number[]>([]);
   const [selectedFields, setSelectedFields] = useState<string[]>([]);
 
-  const availableYears = useMemo(() => (
-    Array.from(new Set(winners.map(w => w.year))).sort((a, b) => b - a)
-  ), [winners]);
-
-  const availableFields = useMemo(() => (
-    Array.from(new Set(winners.map(w => w.field))).sort()
-  ), [winners]);
-
-  const filteredWinners = useFilteredWinners(winners, selectedYears, selectedFields);
+  // Filter winners based on selected years and fields
+  const filteredWinners = useMemo(() => {
+    return winners.filter(winner => {
+      const yearMatch = selectedYears.length ? selectedYears.includes(winner.year) : true;
+      const fieldMatch = selectedFields.length ? selectedFields.includes(winner.field) : true;
+      return yearMatch && fieldMatch;
+    });
+  }, [winners, selectedYears, selectedFields]);
 
   return (
-    <div className="space-y-4">
-      <div className="flex flex-wrap gap-4 p-4 rounded-lg border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div>
+      <div className="flex flex-wrap gap-4 p-4 rounded-lg border mb-4">
         <MultiSelectFilter
-          label="Filter by Year"
+          label="⌕ Years"
           items={availableYears}
           selected={selectedYears}
           onChange={setSelectedYears}
-          placeholder="Enter year..."
+          toString={item => String(item)}
         />
         <MultiSelectFilter
-          label="Filter by Field"
+          label="⌕ Fields"
           items={availableFields}
           selected={selectedFields}
           onChange={setSelectedFields}
-          placeholder="Enter field..."
+          toString={item => item}
         />
       </div>
-      
-      <Suspense fallback={<Skeleton className="h-96 w-full" />}>
-        <WinnersTable winners={filteredWinners} />
-      </Suspense>
+      <WinnersTable winners={filteredWinners} />
     </div>
   );
 }
+
+export default Filter;
