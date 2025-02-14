@@ -26,8 +26,8 @@ export function MultiSelectFilter<T>({
   // Calculate options that are not selected and match input
   const dropdownOptions = useMemo(() => {
     return items.filter(item => {
-      const str = toString(item);
-      return str.includes(input) && !selected.includes(item);
+      const str = toString(item).toLowerCase();
+      return str.includes(input.toLowerCase()) && !selected.includes(item);
     });
   }, [items, input, selected, toString]);
 
